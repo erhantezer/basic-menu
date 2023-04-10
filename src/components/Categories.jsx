@@ -1,9 +1,27 @@
-import React from 'react'
+
+import useCategories from '../hooks/useCategories';
+import useFilters from '../hooks/useFilters';
 
 const Categories = () => {
-  return (
-    <div>Categories</div>
-  )
-}
+    const { categories } = useCategories();
+    const { filterMenus } = useFilters();
 
-export default Categories
+    return (
+        <div className="btn-container">
+            {categories.map((category, index) => {
+                return (
+                    <button
+                        type="button"
+                        className="filter-btn"
+                        key={index}
+                        onClick={() => filterMenus(category)}
+                    >
+                        {category}
+                    </button>
+                );
+            })}
+        </div>
+    );
+};
+
+export default Categories;
